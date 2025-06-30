@@ -3,8 +3,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 
-    import matplotlib.pyplot as plt
-    import streamlit as st
 
     # Time positions
     t1 = 1
@@ -61,8 +59,6 @@ import matplotlib.pyplot as plt
 
 
 def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg2, dive2_time, dive2_depth, pg_final):
-    import matplotlib.pyplot as plt
-    import streamlit as st
 
     # Time positions
     t1 = 1
