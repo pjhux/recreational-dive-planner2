@@ -48,22 +48,22 @@ def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg
 
     st.pyplot(fig)
 
-# === Streamlit UI and example ===
 
-st.title("Recreational Dive Profile Chart Demo")
+st.title("Recreational Dive Planner with Chart")
 
-# Example values (replace with real logic or inputs)
-dive1_time = 34
-dive1_depth = 18
-pg1 = "M"
+# User inputs for dive details
+dive1_depth = st.number_input("First Dive Depth (m)", min_value=5, max_value=40, value=18)
+dive1_time = st.number_input("First Dive Bottom Time (min)", min_value=5, max_value=60, value=34)
+pg1 = st.text_input("Pressure Group after First Dive", value="M")
 
-surface_interval = 60
-pg2 = "G"
+surface_interval = st.number_input("Surface Interval (minutes)", min_value=0, max_value=240, value=60)
+pg2 = st.text_input("Pressure Group after Surface Interval", value="G")
 
-dive2_time = 35
-dive2_depth = 15
-pg_final = "T"
+dive2_depth = st.number_input("Second Dive Depth (m)", min_value=5, max_value=40, value=15)
+dive2_time = st.number_input("Second Dive Bottom Time (min)", min_value=5, max_value=60, value=35)
+pg_final = st.text_input("Pressure Group after Second Dive", value="T")
 
+# Draw the chart
 plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg2, dive2_time, dive2_depth, pg_final)
 
 
