@@ -1465,15 +1465,14 @@ if pg2:
         st.pyplot(fig)
 
 # === Dive Profile Chart ===
-if st.button("Show Dive Profile Chart"):
-    plot_dive_profile_with_pg(
-        first_dive_time,
-        first_dive_depth,
-        pg_after_first_dive,
-        interval_minutes,
-        new_pg,
-        second_dive_time,
-        second_dive_depth,
-        final_pg
-    )
+plot_dive_profile_with_pg(
+    first_dive_time,
+    first_dive_depth,
+    pg_after_first_dive,
+    interval_minutes,
+    new_pg,
+    second_dive_time,
+    second_dive_depth,
+    final_pg
+)
 
