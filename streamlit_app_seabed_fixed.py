@@ -1424,9 +1424,9 @@ st.write("Plan two consecutive dives with automatic pressure group, surface inte
 st.header("Dive 1")
 col1, col2 = st.columns(2)
 with col1:
-    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=18.0)
+    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=42.0, step=0.5, value=18.0)
 with col2:
-    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=34.0)
+    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=30.0)
 
 pg1, result1 = calculate_pressure_group(depth1, time1)
 if pg1:
@@ -1452,9 +1452,9 @@ else:
 st.header("Dive 2")
 col3, col4 = st.columns(2)
 with col3:
-    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=15.0)
+    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=42.0, step=0.5, value=15.0)
 with col4:
-    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=35.0)
+    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=20.0)
 
 # RNT + Total Bottom Time + Final PG + Dive Chart
 if pg2:
