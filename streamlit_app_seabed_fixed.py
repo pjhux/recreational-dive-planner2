@@ -2,7 +2,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg2, dive2_time, dive2_depth, pg_final):
-    # Time positions
     t1 = 1
     t2 = t1 + dive1_time
     t3 = t2 + 1
@@ -14,7 +13,6 @@ def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg
     x = [0, t1, t2, t3, t4, t5, t6, t7]
     y = [0, dive1_depth, dive1_depth, 0, 0, dive2_depth, dive2_depth, 0]
 
-    # Seabed polygon coordinates
     seabed_upper_x = [t1, t2, t4, t5, t6]
     seabed_upper_y = [dive1_depth, dive1_depth,
                       dive1_depth + (dive2_depth - dive1_depth) * (t4 - t2) / (t5 - t2),
@@ -25,7 +23,6 @@ def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg
     seabed_poly_y = seabed_upper_y + seabed_lower_y[::-1]
 
     fig, ax = plt.subplots(figsize=(10, 5))
-
     ax.axhspan(0, -5, facecolor='skyblue', alpha=0.5, zorder=0)
     ax.axhspan(-5, max(dive1_depth, dive2_depth) + 25, facecolor='midnightblue', alpha=0.6, zorder=0)
 
@@ -47,25 +44,6 @@ def plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg
     ax.legend()
 
     st.pyplot(fig)
-
-
-st.title("Recreational Dive Planner with Chart")
-
-# User inputs for dive details
-dive1_depth = st.number_input("First Dive Depth (m)", min_value=5, max_value=40, value=18)
-dive1_time = st.number_input("First Dive Bottom Time (min)", min_value=5, max_value=60, value=34)
-pg1 = st.text_input("Pressure Group after First Dive", value="M")
-
-surface_interval = st.number_input("Surface Interval (minutes)", min_value=0, max_value=240, value=60)
-pg2 = st.text_input("Pressure Group after Surface Interval", value="G")
-
-dive2_depth = st.number_input("Second Dive Depth (m)", min_value=5, max_value=40, value=15)
-dive2_time = st.number_input("Second Dive Bottom Time (min)", min_value=5, max_value=60, value=35)
-pg_final = st.text_input("Pressure Group after Second Dive", value="T")
-
-# Draw the chart
-plot_dive_profile_with_pg(dive1_time, dive1_depth, pg1, surface_interval, pg2, dive2_time, dive2_depth, pg_final)
-
 
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -1424,9 +1402,9 @@ st.write("Plan two consecutive dives with automatic pressure group, surface inte
 st.header("Dive 1")
 col1, col2 = st.columns(2)
 with col1:
-    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=42.0, step=0.5, value=18.0)
+    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=18.0)
 with col2:
-    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=30.0)
+    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=34.0)
 
 pg1, result1 = calculate_pressure_group(depth1, time1)
 if pg1:
@@ -1452,9 +1430,9 @@ else:
 st.header("Dive 2")
 col3, col4 = st.columns(2)
 with col3:
-    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=42.0, step=0.5, value=15.0)
+    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=15.0)
 with col4:
-    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=20.0)
+    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=35.0)
 
 # RNT + Total Bottom Time + Final PG + Dive Chart
 if pg2:
@@ -1485,4 +1463,17 @@ if pg2:
         ax.invert_yaxis()
         ax.grid(True)
         st.pyplot(fig)
+
+# === Dive Profile Chart ===
+if st.button("Show Dive Profile Chart"):
+    plot_dive_profile_with_pg(
+        first_dive_time,
+        first_dive_depth,
+        pg_after_first_dive,
+        interval_minutes,
+        new_pg,
+        second_dive_time,
+        second_dive_depth,
+        final_pg
+    )
 
